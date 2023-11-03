@@ -2,6 +2,7 @@
 using ECommerce.Web.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace ECommerce.Web.Controllers
 {
@@ -28,6 +29,49 @@ namespace ECommerce.Web.Controllers
         public async Task<IActionResult> CouponCreate()
         {
             return View();
+        }
+
+        [HttpPost]
+		public async Task<IActionResult> CouponCreate(CouponDto model)
+		{
+            if (ModelState.IsValid)
+            {
+				List<CouponDto> list = null;
+				ResponseDto? responseDto = await _couponService.CreateCouponsAsync(model);
+				if (responseDto != null)
+				{
+					return RedirectToAction(nameof(CouponIndex));
+				}
+                
+			}
+			return View(model);
+		}
+
+        
+        public async Task<IActionResult> CouponDelete(int couponId)
+        {
+			
+			ResponseDto? responseDto = await _couponService.GetCouponsByIdAsync(couponId);
+			if (responseDto != null)
+			{
+				CouponDto? model = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(responseDto.Response));
+                return View(model);
+			}
+			return NotFound();
+
+		}
+
+        [HttpPost]
+        public async Task<IActionResult> CouponDelete(CouponDto couponDto)
+        {
+
+            ResponseDto? responseDto = await _couponService.DeleteCouponsAsync(couponDto.CouponId);
+            if (responseDto != null)
+            {
+                return RedirectToAction(nameof(CouponIndex));
+            }
+            return View(couponDto);
+
         }
     }
 }

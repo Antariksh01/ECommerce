@@ -83,7 +83,7 @@ namespace ECommerce.Services.CouponAPI.Controllers
             return _responseDto;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ResponseDto DeleteCoupon(int id)
         {
             Coupon coupon = _context.Coupons.First(x=>x.CouponId == id);
