@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Services.CouponAP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Web", "ECommerce.Web\ECommerce.Web.csproj", "{4CE288B5-8433-4F61-9E45-D44ECB6532C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Services.AuthAPI", "ECommerce.Services.AuthAPI\ECommerce.Services.AuthAPI.csproj", "{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Services.AuthAPI", "..\ECommerce.Services.AuthAPI\ECommerce.Services.AuthAPI.csproj", "{DF425658-EE09-49E5-B988-EC1BFCFA0612}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,10 @@ Global
 		{4CE288B5-8433-4F61-9E45-D44ECB6532C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE288B5-8433-4F61-9E45-D44ECB6532C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE288B5-8433-4F61-9E45-D44ECB6532C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF425658-EE09-49E5-B988-EC1BFCFA0612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF425658-EE09-49E5-B988-EC1BFCFA0612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF425658-EE09-49E5-B988-EC1BFCFA0612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF425658-EE09-49E5-B988-EC1BFCFA0612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,7 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B5812D95-7441-4E17-8AF3-2FE8461E6B33} = {220FB20D-5616-4030-A4EC-EC4477196874}
 		{4CE288B5-8433-4F61-9E45-D44ECB6532C5} = {637AB988-6B98-4DE9-9C94-7A2812021BB7}
-		{337500D8-0B78-4AD7-ACBD-6BDD7F67BF12} = {220FB20D-5616-4030-A4EC-EC4477196874}
+		{DF425658-EE09-49E5-B988-EC1BFCFA0612} = {220FB20D-5616-4030-A4EC-EC4477196874}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED9D7C4F-E7CF-47BE-AAAF-EACE2C63EC14}
