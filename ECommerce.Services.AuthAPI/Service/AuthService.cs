@@ -23,9 +23,42 @@ namespace ECommerce.Services.AuthAPI.Service
             throw new NotImplementedException();
         }
 
-        public Task<UserDto> Register(RegistrationRequestDto registrationRequestDto)
+        public async Task<string> Register(RegistrationRequestDto registrationRequestDto)
         {
-            throw new NotImplementedException();
+            ApplicationUser user = new ApplicationUser()
+            {
+
+                UserName = registrationRequestDto.Email,
+                Email = registrationRequestDto.Email,
+                NormalizedEmail = registrationRequestDto.Email.ToUpper(),
+                PhoneNumber = registrationRequestDto.PhoneNumber,
+                Name = registrationRequestDto.Name
+            };
+            try
+            {
+
+                var result = await _userManager.CreateAsync(user, registrationRequestDto.Password);
+                if (result.Succeeded)
+                {
+                    var userToReturn = _appDbContext.ApplicationUser.First(x => x.UserName == registrationRequestDto.Email);
+                    UserDto userDto = new()
+                    {
+                        Name = userToReturn.Name,
+                        Email = userToReturn.Email,
+                        PhoneNumber = userToReturn.PhoneNumber,
+                        ID = userToReturn.Id
+                    };
+
+                    return "";
+                }
+                else
+                {
+                    return result.Errors.FirstOrDefault().Description;
+                }
+            }
+            catch (Exception ex) { }
+
+            return "Error Encountered";
         }
     }
 }
