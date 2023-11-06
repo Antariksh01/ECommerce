@@ -18,9 +18,32 @@ namespace ECommerce.Services.AuthAPI.Service
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
+        public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
-            throw new NotImplementedException();
+            var user = _appDbContext.ApplicationUser.FirstOrDefault(x => x.UserName.ToLower() == loginRequestDto.UserName.ToLower());
+            bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+            if(user == null || isValid == false)
+            {
+                return new LoginResponseDto()
+                {
+                    user=null,
+                    Token=""
+                };
+            }
+            UserDto userDto = new()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                ID = user.Id,
+                PhoneNumber = user.PhoneNumber
+            };
+
+            return new LoginResponseDto()
+            {
+                user = userDto,
+                Token = ""
+            };
+
         }
 
         public async Task<string> Register(RegistrationRequestDto registrationRequestDto)
