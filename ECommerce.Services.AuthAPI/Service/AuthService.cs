@@ -11,12 +11,15 @@ namespace ECommerce.Services.AuthAPI.Service
         private readonly AppDbContext _appDbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public AuthService(AppDbContext appDbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AuthService(AppDbContext appDbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IJwtTokenGenerator jwtTokenGenerator)
         {
             _appDbContext = appDbContext;
             _userManager = userManager;
             _roleManager = roleManager;
+            _jwtTokenGenerator = jwtTokenGenerator;
+
         }
         public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
@@ -27,9 +30,10 @@ namespace ECommerce.Services.AuthAPI.Service
                 return new LoginResponseDto()
                 {
                     user=null,
-                    Token=""
+                    Token="",
                 };
             }
+            var token = _jwtTokenGenerator.GenerateToken(user);
             UserDto userDto = new()
             {
                 Name = user.Name,
@@ -41,7 +45,7 @@ namespace ECommerce.Services.AuthAPI.Service
             return new LoginResponseDto()
             {
                 user = userDto,
-                Token = ""
+                Token = token
             };
 
         }
