@@ -45,5 +45,20 @@ namespace ECommerce.Services.AuthAPI.Controllers
             _responseDto.Response = result;
             return Ok(_responseDto);
         }
+
+        [HttpPost("AssignRole")]
+        public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto registrationRequestDto)
+        {
+
+            var assignRoleSuccessful = await _authService.AssignRole(registrationRequestDto.Email,registrationRequestDto.Role.ToUpper());
+            if (!assignRoleSuccessful)
+            {
+                _responseDto.Success = false;
+                _responseDto.Message = "Error in assigning role";
+                return BadRequest(_responseDto);
+            }
+            
+            return Ok(_responseDto);
+        }
     }
 }
